@@ -1,11 +1,12 @@
 pipeline {
     //  This section defines the execution environment for your build, test, and deployment tasks.
-    agent {
+    /* agent {
         docker {
             image 'maven:3.8.5-openjdk-17'
             args '-v $HOME/.m2:/root/.m2'
         }
-    }
+    } */
+    agent any
 
     // The options directive allows configuring Pipeline-specific options from within the Pipeline itself.
     options {
@@ -38,6 +39,18 @@ pipeline {
     // Containing a sequence of one or more stage directives, the stages section is
     // where the bulk of the "work" described by a Pipeline will be located.
     stages {
+        stage('Setup') {
+            steps {
+                powershell '''
+                    podman machine start
+                    Start-Sleep -Seconds 3
+                    Start-Process -NoNewWindow -FilePath "podman" -ArgumentList "system service -t 0"
+                    [System.Environment]::SetEnvironmentVariable('DOCKER_HOST', 'npipe:////./pipe/podman-pipe', 'Machine')
+                    $env:DOCKER_HOST = 'npipe:////./pipe/podman-pipe'
+                '''
+            }
+        }
+
         stage('Checkout') {
             steps {
                 checkout([
