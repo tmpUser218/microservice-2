@@ -1,6 +1,11 @@
 pipeline {
     //  This section defines the execution environment for your build, test, and deployment tasks.
-    agent { label 'docker-node' }
+    agent {
+        docker {
+            image 'maven:3.8.5-openjdk-17'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
 
     // The options directive allows configuring Pipeline-specific options from within the Pipeline itself.
     options {
