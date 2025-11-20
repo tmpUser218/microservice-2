@@ -43,30 +43,32 @@
 
     <build>
         <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <version>3.1.2</version>
-            <configuration>
-                <includes>
-                    <include>**/*IT.java</include>
-                    <include>**/*ITCase.java</include>
-                    <include>**/*Test.java</include>
-                </includes>
-            </configuration>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>integration-test</goal>
-                        <goal>verify</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-failsafe-plugin</artifactId>-->
+<!--                <version>3.1.2</version>-->
+<!--                <configuration>-->
+<!--                    <includes>-->
+<!--                        <include>**/*IT.java</include>-->
+<!--                        <include>**/*ITCase.java</include>-->
+<!--                        <include>**/*Test.java</include>-->
+<!--                    </includes>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>integration-test</goal>-->
+<!--                            <goal>verify</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <!-- For linting -->
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
@@ -79,6 +81,7 @@
                     </java>
                 </configuration>
             </plugin>
+
             <!-- For integration tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -94,7 +97,7 @@
                 </executions>
             </plugin>
 
-            <!-- For code coverage (optional) -->
+            <!-- For code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
