@@ -272,13 +272,15 @@ pipeline {
     stages {
         stage('Lint') {
             steps {
-                sh './mvnw spotless:check'
+                // sh './mvnw spotless:check' This works for Jenkins on Linux agent.
+                bat 'mvnw.cmd spotless:check'
             }
         }
 
         stage('Build') {
             steps {
-                sh './mvnw clean package'
+                // sh './mvnw clean package' This works for Jenkins on Linux agent.
+                bat 'mvnw.cmd clean package'
             }
         }
     }
