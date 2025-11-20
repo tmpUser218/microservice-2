@@ -269,6 +269,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven-3.9.5'  // Match the name from Global Tool Configuration
+    }
+
     stages {
         // Apply formatting before linting to avoid any errors.
         stage('Format Code') {
@@ -280,14 +284,14 @@ pipeline {
         stage('Lint') {
             steps {
                 // sh './mvnw spotless:check' This works for Jenkins on Linux agent.
-                bat 'mvnw.cmd spotless:check'
+                bat 'mvn spotless:check'
             }
         }
 
         stage('Build') {
             steps {
                 // sh './mvnw clean package' This works for Jenkins on Linux agent.
-                bat 'mvnw.cmd clean package'
+                bat 'mvn clean package'
             }
         }
     }
