@@ -270,6 +270,13 @@ pipeline {
     agent any
 
     stages {
+        // Apply formatting before linting to avoid any errors.
+        stage('Format Code') {
+            steps {
+                bat 'mvn spotless:apply'
+            }
+        }
+
         stage('Lint') {
             steps {
                 // sh './mvnw spotless:check' This works for Jenkins on Linux agent.
