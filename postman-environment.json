@@ -1,0 +1,11 @@
+{
+  "id": "test-env",
+  "name": "Local Environment",
+  "values": [
+    {
+      "key": "dummy",
+      "value": "test",
+      "enabled": true
+    }
+  ]
+}
