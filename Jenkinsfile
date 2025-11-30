@@ -1,8 +1,6 @@
 pipeline {
     agent any
 
-    tools {}
-
     stages {
         stage('Run Newman Tests with Reports') {
             steps {
