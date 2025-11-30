@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven-3.9.5'  // Match the name from Global Tool Configuration
-    }
+    tools {}
 
     stages {
         stage('Run Newman Tests with Reports') {
